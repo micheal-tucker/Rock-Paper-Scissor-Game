@@ -1,3 +1,5 @@
+
+
 body {
     background: linear-gradient(135deg, #141e30, #243b55);
     color: white;
@@ -7,6 +9,66 @@ body {
 }
 
 
+.author-section {
+    text-align: center;
+    margin-top: 50px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #ff6f61, #ff9a8b);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+    animation: fadeInUp 10s ease-out forwards;
+    transition: transform 0.8s ease-in-out;
+    background: transparent;
+}
+
+.author-section:hover {
+    transform: scale(1.1);
+}
+
+.author-name {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    animation: textGlow 1.5s ease-in-out infinite alternate;
+}
+
+.author-title {
+    font-size: 18px;
+    font-style: italic;
+    color: #f1f1f1;
+    letter-spacing: 1px;
+}
+
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes textGlow {
+    0% {
+        text-shadow: 2px 2px 5px rgba(0, 255, 255, 0.8);
+    }
+
+    100% {
+        text-shadow: 2px 2px 15px rgba(0, 255, 255, 1);
+    }
+}
+
 .title {
     font-size: 36px;
     font-weight: bold;
@@ -15,13 +77,23 @@ body {
     background: linear-gradient(45deg, #00c6ff, #0072ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: glowText 1.5s ease-in-out infinite alternate;
 }
 
+
+@keyframes glowText {
+    0% {
+        text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+    }
+
+    100% {
+        text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+    }
+}
 
 .move-icon {
     height: 60px;
 }
-
 
 .move-button {
     background: rgba(255, 255, 255, 0.1);
@@ -38,6 +110,7 @@ body {
 .move-button:hover {
     transform: scale(1.1);
     box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .move-button:active {
@@ -45,12 +118,12 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.5);
 }
 
-
 .result {
     font-size: 28px;
     font-weight: bold;
     margin-top: 40px;
     text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+    animation: textGlow 2s ease-in-out infinite alternate;
 }
 
 .score {
@@ -59,8 +132,7 @@ body {
     font-weight: bold;
 }
 
-
-.reset-score-button{
+.reset-score-button {
     background: linear-gradient(135deg, #ff416c, #ff4b2b);
     color: white;
     border: none;
@@ -76,13 +148,13 @@ body {
 .reset-score-button:hover {
     transform: scale(1.1);
     box-shadow: 0px 0px 15px rgba(255, 99, 132, 0.9);
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
 }
 
-.reset-score-button:active{
+.reset-score-button:active {
     transform: scale(0.9);
     box-shadow: 0px 0px 10px rgba(255, 99, 132, 0.7);
 }
-
 
 @media (max-width: 768px) {
     .title {
@@ -134,8 +206,7 @@ body {
         font-size: 16px;
     }
 
-    .reset-score-button,
-    .auto-play {
+    .reset-score-button {
         padding: 8px 12px;
         font-size: 12px;
     }
