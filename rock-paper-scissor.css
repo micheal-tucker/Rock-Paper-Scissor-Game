@@ -1,0 +1,142 @@
+body {
+    background: linear-gradient(135deg, #141e30, #243b55);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+}
+
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.move-icon {
+    height: 60px;
+}
+
+
+.move-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid white;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.move-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.8);
+}
+
+.move-button:active {
+    transform: scale(0.9);
+    box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.5);
+}
+
+
+.result {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 40px;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+
+.score {
+    margin-top: 50px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+.reset-score-button{
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.reset-score-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px rgba(255, 99, 132, 0.9);
+}
+
+.reset-score-button:active{
+    transform: scale(0.9);
+    box-shadow: 0px 0px 10px rgba(255, 99, 132, 0.7);
+}
+
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 28px;
+    }
+
+    .move-button {
+        width: 100px;
+        height: 100px;
+    }
+
+    .move-icon {
+        height: 50px;
+    }
+
+    .result {
+        font-size: 24px;
+    }
+
+    .score {
+        font-size: 18px;
+    }
+
+    .reset-score-button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .move-button {
+        width: 80px;
+        height: 80px;
+    }
+
+    .move-icon {
+        height: 40px;
+    }
+
+    .result {
+        font-size: 20px;
+    }
+
+    .score {
+        font-size: 16px;
+    }
+
+    .reset-score-button,
+    .auto-play {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
