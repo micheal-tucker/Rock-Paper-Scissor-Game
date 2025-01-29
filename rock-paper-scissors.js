@@ -1,21 +1,11 @@
 let score = JSON.parse(localStorage.getItem("score"));
-
 if (!score) {
-  score = {
-    wins: 0,
-    losses: 0,
-    ties: 0,
-  };
+  console.log("No score found in localStorage, using default score.");
+  score = { wins: 0, losses: 0, ties: 0 };
+} else {
+  console.log("Score retrieved from localStorage:", score);
 }
-
-updateScoreElement();
-
-// function autoPlay() {
-//     setInterval(function() {
-//         const playerMove = pickComputerMove();
-//         playGame(playerMove);
-//     }, 1000)
-// }
+updateScoreElement(); // Initialize UI with the score
 
 document.body.addEventListener("keydown", (event) => {
   if (event.key === "r") {
@@ -28,6 +18,7 @@ document.body.addEventListener("keydown", (event) => {
 });
 
 function playGame(playerMove) {
+  const computerMove = pickComputerMove();
   let result = "";
   if (playerMove === "Scissors") {
     if (computerMove === "Rock") {
@@ -69,7 +60,8 @@ function playGame(playerMove) {
   }
 
   // storing the score
-  localStorage.setItem("score", JSON.stringify(score));
+  localStorage.setItem("score", JSON.stringify(score)); // Store score properly
+  console.log("Updated score saved to localStorage:", score); // Check if it's saved
 
   updateScoreElement();
 
@@ -106,29 +98,116 @@ function pickComputerMove() {
   console.log(computerMove);
 }
 
-function resetScore() {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "Do you really want to reset the score?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, reset it!",
-    cancelButtonText: "No, keep it",
-  }).then((result) => {
+// function resetScore() {
+//   Swal.fire({
+//     title: "Are you sure?",
+//     text: "Do you really want to reset the score?",
+//     icon: "warning",
+//     showCancelButton: true,
+//     confirmButtonColor: "#3085d6",
+//     cancelButtonColor: "#d33",
+//     confirmButtonText: "Yes, reset it!",
+//     cancelButtonText: "No, keep it",
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       // Only reset if the user clicks "Yes"
+//       score.wins = 0;
+//       score.losses = 0;
+//       score.ties = 0;
+//       localStorage.setItem("score", JSON.stringify(score));
+
+//       updateScoreElement();
+
+//       Swal.fire("Reset!", "Your score has been reset.", "success");
+//     } else {
+//       // If the user clicks "No, keep it", just exit without resetting
+//       console.log("Score reset cancelled");
+//     }
+//   });
+// }
+
+async function resetScore() {
+  try {
+    console.log("resetScore function triggered");
+
+    let storedScore = JSON.parse(localStorage.getItem("score"));
+    console.log("Score retrieved before reset:", storedScore);
+
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to reset the score?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, reset it!",
+      cancelButtonText: "No, keep it",
+    });
+
+    console.log("SweetAlert result:", result);
+
     if (result.isConfirmed) {
-      // Only reset if the user clicks "Yes"
+      console.log("User confirmed score reset.");
+
+      // Reset the existing score object instead of redeclaring it
       score.wins = 0;
       score.losses = 0;
       score.ties = 0;
-      localStorage.setItem("score", JSON.stringify(score));
 
+      // Update localStorage
+      localStorage.setItem("score", JSON.stringify(score));
+      console.log("Score successfully reset in localStorage:", score);
+
+      // Update the score again
       updateScoreElement();
 
-      Swal.fire("Reset!", "Your score has been reset.", "success");
+      // Show success message
+      await Swal.fire("Reset!", "Your score has been reset.", "success");
+    } else {
+      console.log("Score reset cancelled.");
+
+      // Restore the score from localStorage (if it exists)
+      if (storedScore) {
+        score = storedScore;
+        console.log("Restored score after cancel:", score);
+      } else {
+        console.log("No previous score found, keeping current values.");
+      }
+
+      // Update the code to show the correct score
+      updateScoreElement();
     }
-  });
+  } catch (error) {
+    console.error("Error in resetting score:", error);
+  }
+}
+
+// Function to update the score element
+function updateScoreElement() {
+  document.querySelector(
+    ".js-score"
+  ).textContent = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+}
+
+// Load score from localStorage when the page loads (Only declared here!)
+score = JSON.parse(localStorage.getItem("score")) || {
+  wins: 0,
+  losses: 0,
+  ties: 0,
+};
+updateScoreElement();
+
+// Function to pick computer's move (example)
+function pickComputerMove() {
+  const randomNumber = Math.random();
+
+  if (randomNumber < 1 / 3) {
+    return "Rock";
+  } else if (randomNumber < 2 / 3) {
+    return "Paper";
+  } else {
+    return "Scissors";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
