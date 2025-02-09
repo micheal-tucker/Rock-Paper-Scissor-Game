@@ -30,7 +30,7 @@ A fun and interactive Rock-Paper-Scissors game built with HTML, CSS, and JavaScr
 
 2. Open `index.html` in your browser.
 
-Alternatively, you can try the live demo: [Live Game](https://rps-arena.netlify.app/)
+Alternatively, you can try the live demo: [Live Game]([(https://rock-papar-scissor-game.netlify.app/)])
 
 ## 🌍 How to Play
 
