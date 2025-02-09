@@ -208,6 +208,14 @@ function pickComputerMove() {
   } else {
     return "Scissors";
   }
+  switch (randomNumber) {
+    case randomNumber < 1 / 3:
+      return "Rock";
+    case randomNumber < 2 / 3:
+      return "Paper";
+    default:
+      return "Scissors";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
